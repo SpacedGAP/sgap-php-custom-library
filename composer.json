@@ -1,0 +1,19 @@
+{
+    "name": "spacedgap/sgap-php-custom-library",
+    "description": "Custom PHP libraries",
+    "require": {
+        "php": "^5.6",
+        "zendframework/zendframework": "^2.4",
+        "symfony/yaml": "^2.6",
+        "doctrine/migrations": "dev-master#dev-master:abb87d84ed"
+    },
+    "authors": [
+        {
+            "name": "Giovanni Petrache",
+            "email": "giovanni.petrache@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "zendframework/zftool": "^0.1.0"
+    }
+}

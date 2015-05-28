@@ -1,0 +1,1 @@
+# spacedGAP - PHP Shared Library
