@@ -33,24 +33,30 @@ abstract class AbstractZf2Module
         $moduleRouteListener->attach($eventManager);
 
         $eventManager->attach(MvcEvent::EVENT_DISPATCH, array($this, 'loadConfigLayout'));
+
+        // TODO:: Detect if ZfcModule is added
         $eventManager->attach(MvcEvent::EVENT_DISPATCH, array($this, 'detectIfZfcAdminRoute'));
     }
 
     public function getConfig()
     {
         // Required to be defined value used in include config files.
-        $module = $this->namespace;
+        $module     = $this->namespace;
         $module_dir = $this->dir;
+        $config     = include "{$module_dir}/config/module.config.php";
 
-        $common_config = include MY_LIBRARY_PATH.'/config/module.common.config.php'; 
-        $config = include "{$module_dir}/config/module.config.php";
+        if (defined(MY_LIBRARY_PATH) 
+            and file_exists(MY_LIBRARY_PATH.'/config/module.common.config.php')) 
+        {
+            $common_config = include MY_LIBRARY_PATH.'/config/module.common.config.php';
 
-        $cc_object = new \Zend\Config\Config($common_config);
-        $c_object = new \Zend\Config\Config($config);
+            $cc_object = new \Zend\Config\Config($common_config);
+            $c_object  = new \Zend\Config\Config($config);
 
-        $merge_config = $c_object->merge($cc_object)->toArray();
+            return $c_object->merge($cc_object)->toArray();           
+        }
 
-        return $merge_config;
+        return $config;
     }
 
     public function getAutoloaderConfig()
