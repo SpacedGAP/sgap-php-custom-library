@@ -18,7 +18,6 @@
         "symfony/yaml": "^2.6",
         "doctrine/migrations": "dev-master#dev-master:abb87d84ed",
         "codeception/codeception": "*",
-        "spacedgap/rbac": "dev-dev",
         "psr/log": "^1.0"
     },
     "require-dev": {
