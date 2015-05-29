@@ -23,7 +23,14 @@ abstract class AbstractZf2Module
     {
         $class_info = Reflection::reflectClass($this);
         $this->namespace = $class_info->getNamespaceName();
-        $this->dir = dirname($class_info->getFileName());
+
+        $dir = dirname($class_info->getFileName());
+        echo $dir."  ".dirname($dir); exit;
+       
+        if (strstr($dir, "src/{$this->namespace}")) {
+            $dir = dirname("{$dir}/../..");
+        }
+        $this->dir = $dir;
     }
 
     public function onBootstrap(MvcEvent $e)
