@@ -6,13 +6,20 @@
             "name": "Giovanni Petrache",
             "email": "giovanni.petrache@gmail.com"
         }
-    ],   
+    ],
+    "autoload": {
+        "psr-4": {
+            "SpacedGAP\\": "library/"
+        }
+    },
     "require": {
         "php": "^5.6",
         "zendframework/zendframework": "^2.4",
         "symfony/yaml": "^2.6",
         "doctrine/migrations": "dev-master#dev-master:abb87d84ed",
-        "codeception/codeception": "*"
+        "codeception/codeception": "*",
+        "spacedgap/rbac": "dev-dev",
+        "psr/log": "^1.0"
     },
     "require-dev": {
         "zendframework/zftool": "^0.1.0"
