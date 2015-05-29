@@ -9,7 +9,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "SpacedGAP\\": "library/"
+            "SpacedGAP\\": "library/SpacedGAP/"
         }
     },
     "require": {
