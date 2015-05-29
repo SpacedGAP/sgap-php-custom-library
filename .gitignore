@@ -1,4 +1,4 @@
 !.gitignore
+composer.lock
 vendor
-
 tests/_output/*
