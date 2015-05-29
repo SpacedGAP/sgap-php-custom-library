@@ -24,11 +24,9 @@ abstract class AbstractZf2Module
         $class_info = Reflection::reflectClass($this);
         $this->namespace = $class_info->getNamespaceName();
 
-        $dir = dirname($class_info->getFileName());
-        echo $dir."  ".dirname($dir); exit;
-       
+        $dir = dirname($class_info->getFileName()); 
         if (strstr($dir, "src/{$this->namespace}")) {
-            $dir = dirname("{$dir}/../..");
+            $dir = dirname(dirname($dir));
         }
         $this->dir = $dir;
     }
@@ -52,15 +50,17 @@ abstract class AbstractZf2Module
         $module_dir = $this->dir;
         $config     = include "{$module_dir}/config/module.config.php";
 
-        if (defined(MY_LIBRARY_PATH) 
+        if (defined('MY_LIBRARY_PATH') 
             and file_exists(MY_LIBRARY_PATH.'/config/module.common.config.php')) 
-        {
+        {            
             $common_config = include MY_LIBRARY_PATH.'/config/module.common.config.php';
 
-            $cc_object = new \Zend\Config\Config($common_config);
-            $c_object  = new \Zend\Config\Config($config);
+            $cc_object     = new \Zend\Config\Config($common_config);
+            $c_object      = new \Zend\Config\Config($config);
 
-            return $c_object->merge($cc_object)->toArray();           
+            $merged_config = $c_object->merge($cc_object)->toArray();
+
+            return $merged_config;           
         }
 
         return $config;
